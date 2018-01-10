@@ -19,6 +19,8 @@ Feature: LoginFeature
     Given I navigate to the login page
     And I enter users email address with Email:admin
     And I verify count of salary digits for Rs 100000
+
+    And i just need to see how cucumber java 8 looks
     And i enter following details for the login to site
       | username | password |
       | admin    | password |
@@ -37,3 +39,4 @@ Feature: LoginFeature
       | admin    | password |
       | viral    | shah     |
       | Test     | viral    |
+
