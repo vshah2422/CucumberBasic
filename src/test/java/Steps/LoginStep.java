@@ -27,7 +27,7 @@ public class LoginStep extends BaseUtil {
     public void iNavigateToTheLoginPage() {
         // Write code here that turns the phrase above into concrete actions
 
-        System.out.println("The Driver is : " + base.StepInfo);
+
     }
 
     @And("^I enter the following for Login$")
