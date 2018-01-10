@@ -10,6 +10,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,8 +66,7 @@ public class LoginStep extends BaseUtil {
     public void iEnterFollowingDetailsForTheLoginToSite(DataTable table) {
         // Write code here that turns the phrase above into concrete actions
 
-        table.raw();
-        List<List<String>> data = table.raw();
+
 
         //Create ArrayList
 
@@ -74,9 +74,11 @@ public class LoginStep extends BaseUtil {
         users = table.asList(User.class);
 
         for (User user : users) {
-            System.out.println("The Password is :" + user.username);
-            System.out.println("The Password is :" + user.password);
+           //Clicking Login button
+            base.Driver.findElement(By.className("login-flyout-button__title")).click();
+            base.Driver.findElement(By.name("username")).sendKeys(user.username);
 
+            base.Driver.findElement(By.xpath("//div[contains(@class,'cb-password-input')]//input[@name='password']")).sendKeys(user.password);
         }
 
     }
