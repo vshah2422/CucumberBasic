@@ -26,7 +26,7 @@ public class LoginStep extends BaseUtil {
     @Given("^I navigate to the login page$")
     public void iNavigateToTheLoginPage() {
         // Write code here that turns the phrase above into concrete actions
-
+        base.Driver.navigate().to("https://crownbet.com.au/");
 
     }
 
