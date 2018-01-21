@@ -21,7 +21,7 @@ public class Hook extends BaseUtil {
     public void InitializeTest() {
         System.out.println("Opening The broweser :  Mock");
         // Passing a dummy webdrive instance
-        System.setProperty("webdriver.gecko.driver", "C:\\automation\\CucumberBasics\\libs\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "V:\\Java_Tutotorial_EA\\lib\\geckodriver.exe");
         base.Driver = new FirefoxDriver();
         base.Driver.manage().window().maximize();
 
@@ -31,7 +31,7 @@ public class Hook extends BaseUtil {
 
     public void TearDownSteps(Scenario scenario) {
 
-        if ((scenario.isFailed() == true))
+        if ((scenario.isFailed()))
 
             System.out.println(scenario.getName());
 

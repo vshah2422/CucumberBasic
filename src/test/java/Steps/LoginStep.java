@@ -10,8 +10,10 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 
+import java.lang.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class LoginStep extends BaseUtil {
     @Given("^I navigate to the login page$")
     public void iNavigateToTheLoginPage() {
         // Write code here that turns the phrase above into concrete actions
-        base.Driver.navigate().to("https://crownbet.com.au/");
+        base.Driver.navigate().to("https://www.sportsbet.com.au/");
 
     }
 
@@ -40,14 +42,19 @@ public class LoginStep extends BaseUtil {
     @And("^I click login button$")
     public void iClickLoginButton() {
         // Write code here that turns the phrase above into concrete actions
-
+        base.Driver.findElement(By.xpath("//div[@id='login-btn-ctn']//a[@class='btn-go']")).click();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
     @Then("^I should see the userform page$")
     public void iShouldSeeTheUserformPage() {
         // Write code here that turns the phrase above into concrete actions
-
+       Assert.assertEquals("Welcome Message is not there . SOmething is wrong ",base.Driver.findElement((By.xpath("//div[@id='account-header-info']//h3//a[contains(text(),'Welcome')]"))).isDisplayed(), true);
     }
 
     @And("^I enter the username as admin and password as admin$")
@@ -67,18 +74,17 @@ public class LoginStep extends BaseUtil {
         // Write code here that turns the phrase above into concrete actions
 
 
-
         //Create ArrayList
 
         List<User> users = new ArrayList<User>();
         users = table.asList(User.class);
 
         for (User user : users) {
-           //Clicking Login button
-            base.Driver.findElement(By.className("login-flyout-button__title")).click();
-            base.Driver.findElement(By.name("username")).sendKeys(user.username);
+            //Clicking Login button
+            base.Driver.findElement(By.id("fakeusername")).sendKeys(user.username);
+            base.Driver.findElement(By.id("fakepassword")).sendKeys(user.password);
 
-            base.Driver.findElement(By.xpath("//div[contains(@class,'cb-password-input')]//input[@name='password']")).sendKeys(user.password);
+
         }
 
     }
