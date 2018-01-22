@@ -6,7 +6,7 @@ Feature: LoginFeature
     Given I navigate to the login page
     And i enter following details for the login to site
       | username | password |
-      | urviral    | Monday43 |
+      | urviral    | Monday44 |
     And I click login button
     Then I should see the userform page
 

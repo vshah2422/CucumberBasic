@@ -1,10 +1,9 @@
-package Steps;
+package steps;
 
 import Base.BaseUtil;
 import Transformation.EmailTransform;
 import Transformation.SalaryCountTransformer;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -12,8 +11,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import pages.LoginPage;
 
-import java.lang.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,9 +41,12 @@ public class LoginStep extends BaseUtil {
     @And("^I click login button$")
     public void iClickLoginButton() {
         // Write code here that turns the phrase above into concrete actions
-        base.Driver.findElement(By.xpath("//div[@id='login-btn-ctn']//a[@class='btn-go']")).click();
+        LoginPage page = new LoginPage(base.Driver);
+        page.CLickLogin();
+
+
         try {
-            Thread.sleep(10000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -54,7 +56,7 @@ public class LoginStep extends BaseUtil {
     @Then("^I should see the userform page$")
     public void iShouldSeeTheUserformPage() {
         // Write code here that turns the phrase above into concrete actions
-       Assert.assertEquals("Welcome Message is not there . SOmething is wrong ",base.Driver.findElement((By.xpath("//div[@id='account-header-info']//h3//a[contains(text(),'Welcome')]"))).isDisplayed(), true);
+        Assert.assertEquals("Welcome Message is not there . SOmething is wrong ", base.Driver.findElement((By.xpath("//div[@id='account-header-info']//h3//a[contains(text(),'Welcome')]"))).isDisplayed(), true);
     }
 
     @And("^I enter the username as admin and password as admin$")
@@ -78,13 +80,12 @@ public class LoginStep extends BaseUtil {
 
         List<User> users = new ArrayList<User>();
         users = table.asList(User.class);
+        LoginPage page = new LoginPage(base.Driver);
 
-        for (User user : users) {
-            //Clicking Login button
-            base.Driver.findElement(By.id("fakeusername")).sendKeys(user.username);
-            base.Driver.findElement(By.id("fakepassword")).sendKeys(user.password);
-
-
+        //Clicking Login button
+        for (User user : users)
+        {
+            page.Login(user.username,user.password);
         }
 
     }
