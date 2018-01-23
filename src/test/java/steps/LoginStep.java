@@ -110,6 +110,13 @@ public class LoginStep extends BaseUtil {
         System.out.println("Salary digit count is " + salary);
     }
 
+    @Then("^I should see failed step$")
+    public void iShouldSeeFailedStep()  {
+        Assert.assertEquals("Is not displayed ", base.Driver.findElement((By.id("jijijijj"))).isDisplayed(), true);
+
+
+    }
+
     public static class User
 
     {
